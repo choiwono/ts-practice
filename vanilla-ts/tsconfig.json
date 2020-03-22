@@ -4,6 +4,6 @@
         "module" : "commonjs",
         "strict" : true,
         "esModuleInterop" : true,
-        "outDir" : "./dist"
+        "outDir" : "vanilla-ts/dist"
     }
 }
