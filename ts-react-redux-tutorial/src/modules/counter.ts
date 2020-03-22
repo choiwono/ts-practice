@@ -1,6 +1,11 @@
-const INCREASE = 'counter/INCREASE' as const;
-const DECREASE = 'counter/DECREASE' as const;
-const INCREASE_BY = 'counter/INCREASE_BY' as const;
+import {
+    ActionType,
+    createReducer
+} from 'typesafe-actions'
+
+const INCREASE = 'counter/INCREASE';
+const DECREASE = 'counter/DECREASE';
+const INCREASE_BY = 'counter/INCREASE_BY';
 
 export const increase = () => ({ type : INCREASE })
 export const decrease = () => ({ type : DECREASE })
