@@ -1,0 +1,16 @@
+"use strict";
+//const message : string = "hello world";
+//console.log(message);
+var count = 0;
+count += 1;
+count += 2;
+var message = 'hello world';
+var done = true;
+var numbers = [1, 2, 3];
+var messages = ['hello', 'world'];
+messages.push('1');
+var mightBeUndefined = undefined;
+var nullableNumber = null;
+var color = 'red';
+color = 'yellow';
+color = 'red';

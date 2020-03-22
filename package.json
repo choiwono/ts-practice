@@ -1,0 +1,14 @@
+{
+  "name": "ts-practice",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/choiwono/ts-practice.git",
+  "author": "choiwono <treasure_b@naver.com>",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^3.8.3"
+  },
+  "scripts" : {
+    "build" : "tsc"
+  }
+}
