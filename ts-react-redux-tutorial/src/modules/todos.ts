@@ -1,26 +1,39 @@
-const ADD_TODO = 'todos/ADD_TODO' as const;
-const TOGGLE_TODO = 'todos/TOGGLE_TODO' as const;
-const REMOVE_TODO = 'todos/REMOVE_TODO' as const;
+import {
+    createAction,
+    ActionType,
+    createReducer
+} from 'typesafe-actions'
+import { toUnicode } from 'punycode';
 
+const ADD_TODO = 'todos/ADD_TODO';
+const TOGGLE_TODO = 'todos/TOGGLE_TODO';
+const REMOVE_TODO = 'todos/REMOVE_TODO';
+
+export const addTodo = createAction(ADD_TODO)<string>();
+/*
 export const addTodo = (text:string) => ({
     type : ADD_TODO,
     payload : text
-});
+});*/
+export const toggleTodo = createAction(TOGGLE_TODO)<number>();
 
-export const toggleTodo = (id:number) => ({
+/*export const toggleTodo = (id:number) => ({
     type: TOGGLE_TODO,
     payload: id
-});
-
-export const removeTodo = (id:number) => ({
+});*/
+export const removeTodo = createAction(REMOVE_TODO)<number>();
+/*export const removeTodo = (id:number) => ({
     type: REMOVE_TODO,
     payload : id 
-})
+})*/
 
+const actions = { addTodo, toggleTodo, removeTodo }
+type TodosAction = ActionType<typeof actions>;
+/*
 type TodosAcion =
     | ReturnType<typeof addTodo>
     | ReturnType<typeof toggleTodo>
-    | ReturnType<typeof removeTodo>
+    | ReturnType<typeof removeTodo>*/
 
 export type Todo = {
     id: number;
@@ -36,6 +49,7 @@ const initialState: TodosState = [
     { id: 3, text: '투두리스트 만들기', done : false }
 ];
 
+/*
 function todos(state : TodosState = initialState, action: TodosAcion): TodosState {
     switch (action.type) {
         case ADD_TODO:
@@ -54,6 +68,21 @@ function todos(state : TodosState = initialState, action: TodosAcion): TodosStat
         default :
             return state;
     }
-}
+}*/
+
+const todos = createReducer<TodosState, TodosAction>(initialState, {
+    [ADD_TODO] : (state, { payload: text }) =>
+        state.concat({
+            id: Math.max(...state.map(todo => todo.id)) + 1,
+            text,
+            done : false
+        }),
+        
+    [TOGGLE_TODO] : (state, { payload: id }) =>
+        state.map(todo => (todo.id === id ? { ...todo, done: !todo.done } : todo)),
+
+    [REMOVE_TODO] : (state, { payload: id }) =>
+        state.filter(todo => todo.id !== id)
+})
 
 export default todos;
