@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@craco/craco": "^5.6.4",
+    "@types/react-dom": "^16.9.5",
     "typesafe-actions": "^5.1.0"
   }
 }
